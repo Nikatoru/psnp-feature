@@ -1,0 +1,77 @@
+<div class="wrap">
+  <div class="top">
+    <div><strong style="font-size:17px;">PSNPROFILES</strong> <span class="pill">Backlog, Trophy Cleaner &amp; 100% Extension</span></div>
+    <span style="font-size:11px;">Live Preview</span>
+  </div>
+
+  <!-- Pre-Purchase Game Checker + Affiliate Store Button -->
+  <div class="card check-card">
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+      <strong style="color:#1e4b8f;">Check Any Game:</strong>
+      <input id="cIn" list="gList" placeholder="Type game name..." oninput="window.chk()">
+      <datalist id="gList"></datalist>
+      <button type="button" onclick="window.chk()">Check</button>
+    </div>
+    <div id="cOut" style="font-weight:bold; color:#334155;">Type a game to check Online/Offline, DLC &amp; Store Price</div>
+  </div>
+
+  <!-- Profile Sync & Quick Actions -->
+  <div class="card">
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+      <input id="uIn" value="TrophyHunter_ZA">
+      <button type="button" onclick="window.sim()">Sync PSN</button>
+      <button type="button" style="background:#334155;" onclick="window.allG()">Load All 12</button>
+      <button type="button" style="background:#d97706;" onclick="window.runCleaner()">🧹 Trophy Cleaner</button>
+      <button type="button" style="background:#059669;" onclick="window.pick()">Pick Next Game</button>
+    </div>
+    <label style="color:#6b21a8; font-weight:bold; cursor:pointer;">
+      <input type="checkbox" id="dlc" checked onchange="window.draw()"> Include DLC Hours (100%)
+    </label>
+  </div>
+
+  <!-- Selected Game Trophy Breakdown Drawer -->
+  <div id="drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+      <strong id="dTitle" style="color:#065f46; font-size:15px;"></strong>
+      <div style="display:flex; gap:6px;">
+        <a href="https://psnprofiles.com" target="_blank"><button type="button">Trophy Guide ↗</button></a>
+        <a id="storeLink" href="https://playstation.com" target="_blank"><button type="button" style="background:#0284c7;">PS Store / DLC Deals ↗</button></a>
+        <button type="button" style="background:#64748b;" onclick="document.getElementById('drawer').style.display='none'">Close</button>
+      </div>
+    </div>
+    <div id="dSub" style="margin-top:4px; font-weight:bold; color:#374151;"></div>
+    <div id="tBox"></div>
+  </div>
+
+  <!-- Summary Stats Bar -->
+  <div class="stats">
+    <div class="stat"><b id="sUser">-</b><span>PROFILE</span></div>
+    <div class="stat"><b id="sAvg">0%</b><span>AVG COMPLETION</span></div>
+    <div class="stat"><b id="sHrs">0h</b><span>HOURS LEFT</span></div>
+    <div class="stat"><b id="sDif">0/10</b><span>AVG DIFF</span></div>
+  </div>
+
+  <!-- Backlog Filters -->
+  <div class="card">
+    <input id="q" placeholder="Filter list..." oninput="window.draw()">
+    <select id="p" onchange="window.draw()"><option value="ALL">All Platforms</option><option value="PS5">PS5</option><option value="PS4">PS4</option><option value="PS3">PS3</option></select>
+    <select id="m" onchange="window.draw()"><option value="ALL">All Modes</option><option value="SOLO">Offline Solo</option><option value="COOP">Online/Co-op</option></select>
+    <select id="d" onchange="window.draw()"><option value="ALL">All DLC</option><option value="NO">No DLC</option><option value="YES">Has DLC</option></select>
+    <input type="number" id="h" value="500" style="width:60px;" oninput="window.draw()" title="Max Hours Left">
+    <select id="st" onchange="window.draw()"><option value="ok">Attainable</option><option value="all">All Status</option></select>
+    <select id="so" onchange="window.draw()">
+      <option value="asc">Shortest First</option>
+      <option value="clean">Trophy Cleaner (Best % Boost)</option>
+      <option value="desc">Longest First</option>
+      <option value="dif">Easiest First</option>
+    </select>
+  </div>
+
+  <!-- Games Table -->
+  <table>
+    <thead>
+      <tr><th>Game</th><th>Platform</th><th>Progress</th><th>Left</th><th>Mode</th><th>DLC</th><th>Diff</th><th>Status</th></tr>
+    </thead>
+    <tbody id="tb"></tbody>
+  </table>
+</div>
